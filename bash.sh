@@ -5,7 +5,7 @@ path=$1
 get_uniq_name() {
     file=$1
 
-    if [! -e "$file"];then
+    if [ ! -e "$file" ];then
         echo "$file"
         return
     fi
@@ -44,6 +44,10 @@ if [ -d $path ];then
     for file in "$path"/*
     do
         if [ -f "$file" ];then
+
+            if [ "$file" == "$path/log.txt" ];then
+                continue
+            fi
             case "$file" in 
             *.png|*.jpg|*.jpeg)
                 dest="$path/Images/$(basename "$file")"
